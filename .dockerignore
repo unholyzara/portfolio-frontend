@@ -1,0 +1,11 @@
+.git
+.github
+.vscode
+.codex
+.gemini
+.editorconfig
+.prettierrc
+node_modules
+dist
+*.md
+proxy.conf.json
