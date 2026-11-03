@@ -1,0 +1,83 @@
+@if (project(); as project) {
+  <article>
+    <a class="back m muted" routerLink="/" fragment="progetti">← Progetti</a>
+    <h1 class="h detail-title">{{ project.title }}</h1>
+
+    @if (project.work_experience) {
+      <dl class="meta">
+        <div>
+          <dt class="m muted">Contesto</dt>
+          <dd>{{ project.work_experience.title }}</dd>
+        </div>
+        <div>
+          <dt class="m muted">Azienda</dt>
+          <dd>{{ project.work_experience.company.name }}</dd>
+        </div>
+      </dl>
+    } @else {
+      <ul class="tags">
+        <li class="tag m">Progetto Personale</li>
+      </ul>
+    }
+
+    <div class="split">
+      <h2 class="h subtitle">Cosa fa</h2>
+      <p class="lead">{{ project.description }}</p>
+    </div>
+
+    <ul class="gallery" aria-label="Immagini del progetto">
+      @for (image of project.images; track image.uuid) {
+        <li>
+          @if (image.url) {
+            <img [src]="image.url" [alt]="image.alt" loading="lazy" />
+          } @else {
+            <div class="media m muted">[DB · ProjectImage.image]</div>
+          }
+        </li>
+      }
+    </ul>
+
+    <div class="split">
+      <h2 class="h subtitle">Stack</h2>
+      <ul class="tags">
+        @for (technology of project.technologies; track technology.uuid) {
+          <li class="tag m">
+            <span>{{ technology.name }}</span>
+            <span class="muted"> {{ technology.level }} / 5 </span>
+          </li>
+        }
+      </ul>
+    </div>
+    @if (repositories().length > 0) {
+      <div class="split">
+        <h2 class="h subtitle">
+          @if (repositories().length == 1) {
+            Repository
+          } @else {
+            Repositories
+          }
+        </h2>
+        <ul class="a-hov">
+          @for (repository of repositories(); track repository.uuid) {
+            <li>
+              <a [href]="repository.url" target="_blank" rel="noopener">{{ repository.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+    <nav class="pager m" aria-label="Altri progetti">
+      @if (pager().prev; as prev) {
+        <a [routerLink]="['/progetti', prev.uuid]">← {{ prev.title }}</a>
+      } @else {
+        <span></span>
+      }
+      @if (pager().next; as next) {
+        <a [routerLink]="['/progetti', next.uuid]">{{ next.title }} →</a>
+      }
+    </nav>
+  </article>
+} @else {
+  <p class="back m">Progetto non trovato. <a routerLink="/">← Home</a></p>
+}

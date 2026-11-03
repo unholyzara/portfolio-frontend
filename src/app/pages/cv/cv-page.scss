@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.cv-page {
+  &__toolbar {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &__print {
+    margin-top: 1rem;
+    pointer-events: auto;
+
+    &:hover {
+      background: var(--bg);
+      color: var(--ac);
+    }
+  }
+}
+
+@media print {
+  .cv-page__toolbar {
+    display: none;
+  }
+}

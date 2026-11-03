@@ -1,1 +1,256 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Archivo Black', Impact, sans-serif;
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --rule: 3px solid currentColor;
+  color-scheme: dark;
+  --bg: #0e0e0e;
+  --fg: #f2f0e8;
+  --mut: #a8a59a;
+  --ac: #c6ff3d;
+  --nav-height: 80px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f2f0e8;
+  --fg: #0e0e0e;
+  --mut: #55524a;
+  --ac: #c23400;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-height) + 0.25rem);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 0.9375rem/1.6 var(--font-mono);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ac);
+  outline-offset: 3px;
+}
+
+.m {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero {
+  min-height: 90svh;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--mut);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.5rem 0.875rem;
+  border: var(--rule);
+
+  &--accent {
+    background: var(--ac);
+    border-color: var(--ac);
+    color: var(--bg);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.625rem 1rem;
+  border: var(--rule);
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &--accent {
+    background: var(--ac);
+    border-color: var(--ac);
+    color: var(--bg);
+  }
+}
+
+.list {
+  border-bottom: var(--rule);
+}
+
+.row {
+  --cols: 80px 1.4fr 1fr 80px;
+  display: grid;
+  grid-template-columns: var(--cols);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding-block: 1.75rem;
+  border-top: var(--rule);
+
+  &--period {
+    --cols: 200px 1.4fr 1fr 80px;
+  }
+
+  &--date {
+    --cols: 140px 1fr;
+  }
+
+  &--index {
+    --cols: 60px 1fr 40px;
+  }
+
+  &__title {
+    display: block;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  &__sub {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  &__arrow {
+    justify-self: end;
+    font-size: 1.75rem;
+  }
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);
+  border-bottom: var(--rule);
+  box-sizing: border-box;
+  height: var(--nav-height);
+}
+
+a.row:hover .row__title,
+a.row:hover .row__label,
+.nav a:hover,
+.a-hov a:hover,
+.hov:hover {
+  // text-decoration: underline;
+  color: var(--ac);
+}
+
+.section {
+  padding-block: 2rem 4rem;
+
+  &__title {
+    margin: 0.5rem 0 2rem;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  }
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3.5rem;
+  margin-block: 3rem;
+
+  > .subtitle {
+    margin: 0;
+  }
+}
+
+.subtitle {
+  margin: 3rem 0 1rem;
+  font-size: 2.5rem;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.375rem;
+}
+
+.back {
+  display: inline-block;
+  padding-block: 2rem;
+}
+
+.detail-title {
+  font-size: clamp(2rem, 9vw, 8rem);
+  overflow-wrap: anywhere;
+}
+
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18rem;
+  padding: 1rem;
+  border: 3px dashed currentColor;
+  text-align: center;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
+  border-top: var(--rule);
+}
+
+@media (max-width: 760px) {
+  .row,
+  .row--period,
+  .row--date,
+  .row--index {
+    --cols: 1fr;
+    gap: 0.5rem;
+  }
+
+  .row__more,
+  .row__arrow {
+    display: none;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
