@@ -31,7 +31,7 @@ export class SettingsService {
     });
   }
 
-  private readonly themeMedia = this.doc.defaultView?.matchMedia(
+  private readonly themeMedia = this.doc.defaultView?.matchMedia?.(
     '(prefers-color-scheme: light)',
   );
 
@@ -94,7 +94,7 @@ export class SettingsService {
     if (stored === 'dark' || stored === 'light') {
       return stored;
     }
-    const prefersLight = this.doc.defaultView?.matchMedia('(prefers-color-scheme: light)').matches;
+    const prefersLight = this.doc.defaultView?.matchMedia?.('(prefers-color-scheme: light)')?.matches;
     return prefersLight ? 'light' : 'dark';
   }
 
