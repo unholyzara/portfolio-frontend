@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type IconName = 'mail' | 'phone' | 'github';
+export type IconName = 'mail' | 'phone';
 
 @Component({
     selector: 'app-icon',
