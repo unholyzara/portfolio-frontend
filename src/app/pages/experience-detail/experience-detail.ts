@@ -15,6 +15,7 @@ export class ExperienceDetail {
 
   readonly uuid = input.required<string>();
 
+  protected readonly loaded = this.portfolio.loaded
   protected readonly experience = computed(() => this.portfolio.experience(this.uuid()));
   protected readonly responsibilities = computed(() => this.portfolio.experienceResponsibilities(this.uuid()));
   protected readonly projects = computed(() => this.portfolio.projectsOf(this.uuid()));

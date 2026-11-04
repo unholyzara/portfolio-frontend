@@ -96,5 +96,9 @@
     </nav>
   </article>
 } @else {
-  <p class="back m">Esperienza non trovata. <a routerLink="/">← Home</a></p>
+  @if (loaded() === true) {
+    <p class="back m">Esperienza non trovata. <a routerLink="/">← Home</a></p>
+  } @else {
+    <p class="back m">Caricamento...</p>
+  }
 }
