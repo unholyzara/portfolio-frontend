@@ -73,7 +73,7 @@
           "builder": "@angular/build:unit-test",
           "options": {
             "runner": "vitest",
-            "runnerConfig": true
+            "runnerConfig": "vitest.config.ts"
           }
         }
       }
