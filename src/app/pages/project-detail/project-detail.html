@@ -25,18 +25,6 @@
       <p class="lead">{{ project.description }}</p>
     </div>
 
-    <ul class="gallery" aria-label="Immagini del progetto">
-      @for (image of project.images; track image.uuid) {
-        <li>
-          @if (image.url) {
-            <img [src]="image.url" [alt]="image.alt" loading="lazy" />
-          } @else {
-            <div class="media m muted">[DB · ProjectImage.image]</div>
-          }
-        </li>
-      }
-    </ul>
-
     <div class="split">
       <h2 class="h subtitle">Stack</h2>
       <ul class="tags">
@@ -79,5 +67,9 @@
     </nav>
   </article>
 } @else {
-  <p class="back m">Progetto non trovato. <a routerLink="/">← Home</a></p>
+  @if (loaded() === true) {
+    <p class="back m">Progetto non trovato. <a routerLink="/">← Home</a></p>
+  } @else {
+    <p class="back m">Caricamento...</p>
+  }
 }

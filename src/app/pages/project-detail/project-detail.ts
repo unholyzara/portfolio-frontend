@@ -15,6 +15,7 @@ export class ProjectDetail {
 
   readonly uuid = input.required<string>();
 
+  protected readonly loaded = this.portfolio.loaded
   protected readonly project = computed(() => this.portfolio.project(this.uuid()));
   protected readonly repositories = computed(() => this.portfolio.projectRepositories(this.uuid()));
 
