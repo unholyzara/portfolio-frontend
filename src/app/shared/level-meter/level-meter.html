@@ -1,0 +1,5 @@
+<span class="meter" role="img" [attr.aria-label]="'Livello ' + filled() + ' su ' + max()">
+  @for (active of steps(); track $index) {
+    <span class="meter__step" [class.meter__step--on]="active"></span>
+  }
+</span>

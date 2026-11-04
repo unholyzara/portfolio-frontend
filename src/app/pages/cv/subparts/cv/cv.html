@@ -1,0 +1,123 @@
+<article class="cv">
+  <div class="cv__head">
+    <section>
+      <h1 class="h cv__name">{{ personal().name }} {{ personal().surname }}</h1>
+    </section>
+
+    <section class="block">
+      <p class="m cv__role">{{ personal().job_role }}</p>
+    </section>
+
+    <section class="block" aria-labelledby="panoramica-title">
+      <h2 class="h block__title" id="panoramica-title">Panoramica</h2>
+      <p class="block__text">{{ overview().text }}</p>
+    </section>
+
+    <!-- <section class="block" aria-labelledby="formazione-title">
+      <h2 class="h block__title" id="formazione-title">Formazione accademica</h2>
+      @for (education of educations(); track education.uuid) {
+        <div class="entry">
+          <h3 class="entry__title">{{ education.qualification }}</h3>
+          <p class="entry__sub">{{ education.field_of_study }}</p>
+          <p class="m muted">
+            {{ education.start_date | date: 'yyyy' }} –
+            {{ education.end_date ? (education.end_date | date: 'yyyy') : 'In corso' }}
+          </p>
+          <p class="muted">{{ education.institution }}</p>
+        </div>
+      }
+    </section> -->
+
+    <section class="block" aria-labelledby="formazione-title">
+      <h2 class="h block__title" id="formazione-title">Formazione accademica</h2>
+      <ol class="timeline">
+        @for (education of timelineEducations(); track education.uuid) {
+          <li class="entry timeline__item">
+            <p class="m muted">
+              {{ education.start_date | date: 'yyyy' }} –
+              {{ education.end_date ? (education.end_date | date: 'yyyy') : 'In corso' }}
+            </p>
+            <h3 class="entry__title">{{ education.qualification }}</h3>
+            <p class="entry__sub">{{ education.field_of_study }}</p>
+            <p class="muted">{{ education.institution }}</p>
+          </li>
+        }
+      </ol>
+    </section>
+
+    <section class="block work-experieces" aria-labelledby="work-title">
+      <h2 class="h block__title" id="work-title">Work experience</h2>
+      @for (experience of experiences(); track experience.uuid) {
+        <div class="entry">
+          <h3 class="entry__title">{{ experience.company.name }} | {{ experience.title }}</h3>
+          <p class="m muted">{{ experience.start_date }} – {{ experience.end_date ?? 'Oggi' }}</p>
+          @if (experience.description) {
+            <p class="entry__description">{{ experience.description }}</p>
+          }
+          @let responsibilities = experienceResponsibilities(experience.uuid);
+          @if (responsibilities.length) {
+            <p class="m muted entry__label" [id]="'mansioni-' + experience.uuid">Mansioni</p>
+            <ul class="bullets" [attr.aria-labelledby]="'mansioni-' + experience.uuid">
+              @for (responsibility of responsibilities; track responsibility.uuid) {
+                <li>{{ responsibility.description }}</li>
+              }
+            </ul>
+          }
+        </div>
+      }
+    </section>
+  </div>
+
+  <aside class="cv__side" aria-label="Contatti e competenze">
+    <ul class="plain block">
+      <li class="cv__contact">
+        <app-icon name="mail" [size]="20" class="cv__icon" />
+        <a class="cv__mail" [href]="'mailto:' + personal().email">{{ personal().email }}</a>
+      </li>
+      <li class="cv__contact">
+        <app-icon name="phone" [size]="20" class="cv__icon" />
+        <a class="cv__phone" [href]="'tel:' + personal().phone_number">{{
+          personal().phone_number
+        }}</a>
+      </li>
+    </ul>
+
+    <section class="block" aria-labelledby="tech-title">
+      <h2 class="h block__title" id="tech-title">Competenze tecniche</h2>
+      @for (group of technologyGroups(); track group.label) {
+        <div class="group">
+          <h3 class="m muted group__title">{{ group.label }}</h3>
+          <ul class="bullets">
+            @for (technology of group.items; track technology.uuid) {
+              <li class="skill">
+                <strong>{{ technology.name }}</strong>
+                <app-level-meter [level]="technology.level" />
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </section>
+
+    <section class="block" aria-labelledby="soft-title">
+      <h2 class="h block__title" id="soft-title">Soft skills</h2>
+      <ul class="bullets">
+        @for (skill of softSkills(); track skill) {
+          <li>{{ skill }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="lingue-title">
+      <h2 class="h block__title" id="lingue-title">Lingue parlate</h2>
+      <ul class="plain">
+        @for (language of languages(); track language.uuid) {
+          <li class="skill">
+            <strong>{{ language.name }}</strong>
+            <app-level-meter [level]="language.level" />
+          </li>
+        }
+      </ul>
+    </section>
+  </aside>
+</article>

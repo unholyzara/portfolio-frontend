@@ -1,0 +1,103 @@
+<header class="hero">
+  <p class="m muted">{{ personal().job_role }}</p>
+  <h1 class="h hero__name">{{ personal().name }}<br />[{{ personal().surname }}]</h1>
+  <div class="hero__body">
+    <ul class="tags" aria-label="Lingue">
+      @for (language of languages(); track language.uuid; let first = $first) {
+        <li class="tag m" [class.tag--accent]="first">
+          {{ language.name }} · {{ language.level }} / 5
+        </li>
+      }
+    </ul>
+    <p class="lead">{{ overview().text }}</p>
+  </div>
+</header>
+
+<section class="section" id="esperienza" aria-labelledby="esperienza-title">
+  <p class="m muted"><span class="section-number">01</span> / Sezione</p>
+  <h2 class="h section__title" id="esperienza-title">Esperienza</h2>
+  <ul class="list">
+    @for (experience of experiences(); track experience.uuid) {
+      <li>
+        <a class="row row--period" [routerLink]="['/esperienza', experience.uuid]">
+          <span class="m"
+            >{{ experience.start_date }} – {{ experience.end_date ?? 'in corso' }}</span
+          >
+          <span>
+            <span class="h row__title">{{ experience.title }}</span>
+            <span class="row__sub">{{ experience.company.name }}</span>
+          </span>
+          <span class="row__more muted">{{ joinNames(experience.technologies) }}</span>
+          <span class="row__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<section class="section" id="progetti" aria-labelledby="progetti-title">
+  <p class="m muted"><span class="section-number">02</span> / Sezione</p>
+  <h2 class="h section__title" id="progetti-title">Progetti</h2>
+  <ul class="list">
+    @for (project of projects(); track project.uuid; let i = $index) {
+      <li>
+        <a class="row" [routerLink]="['/progetti', project.uuid]">
+          <span class="m">{{ pad(i) }}</span>
+          <span class="h row__title">{{ project.title }}</span>
+          <span class="row__more muted">{{ joinNames(project.technologies) }}</span>
+          <span class="row__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<div class="duo">
+  <section class="section" id="formazione" aria-labelledby="formazione-title">
+    <p class="m muted"><span class="section-number">03</span> / Sezione</p>
+    <h2 class="h section__title" id="formazione-title">Formazione</h2>
+    <ul class="list">
+      @for (education of educations(); track education.uuid) {
+        <li class="row row--date">
+          <span class="m">{{ education.start_date }} – {{ education.end_date ?? 'in corso' }}</span>
+          <span>
+            {{ education.qualification }} · {{ education.field_of_study }}
+            <span class="row__sub muted">{{ education.institution }}</span>
+          </span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="skills-title">
+    <p class="m muted"><span class="section-number">04</span> / Sezione</p>
+    <h2 class="h section__title" id="skills-title">Tecnologie usate</h2>
+    <ul class="tags">
+      @for (technology of technologies(); track technology.uuid) {
+        <li class="tag m">
+          <span>{{ technology.name }}</span>
+          <span class="muted"> {{ technology.level }} / 5 </span>
+        </li>
+      }
+    </ul>
+  </section>
+</div>
+
+<section class="cta" id="contatti" aria-labelledby="contatti-title">
+  <h2 class="h cta__title" id="contatti-title">Contatti</h2>
+  <div class="cta__actions">
+    <a class="btn btn--accent m" [routerLink]="['/cv']">CV →</a>
+    <a class="m hov" [href]="'mailto:' + personal().email">{{ personal().email }}</a>
+    <a class="m hov" href="https://github.com/unholyzara" target="_blank" rel="noopener">
+      GitHub / unholyzara
+    </a>
+    <a
+      class="m hov"
+      href="https://it.linkedin.com/in/mattia-zaramella-b47771245"
+      target="_blank"
+      rel="noopener"
+    >
+      linkedin / Mattia Zaramella
+    </a>
+  </div>
+</section>

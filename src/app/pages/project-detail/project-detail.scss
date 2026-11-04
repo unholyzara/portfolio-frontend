@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 3rem 0;
+  padding-block: 1.5rem;
+  border-block: var(--rule);
+
+  dd {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+  }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.5rem;
+  margin-block: 3.5rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: var(--rule);
+  }
+}
+
+@media (max-width: 760px) {
+  .meta {
+    grid-template-columns: 1fr;
+  }
+}

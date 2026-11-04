@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.hero {
+  padding-block: clamp(3rem, 8vw, 4.5rem) 4rem;
+
+  &__name {
+    margin-top: 1.25rem;
+    font-size: clamp(3rem, 11.5vw, 10rem);
+    overflow-wrap: anywhere;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    margin-top: 3.5rem;
+  }
+}
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+}
+
+.section-number {
+  color: var(--ac);
+}
+
+.cta {
+  padding-top: 3rem;
+
+  &__title {
+    color: var(--ac);
+    font-size: clamp(3rem, 9vw, 7.5rem);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero__body,
+  .duo {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,30 @@
+:host {
+  --meter-on: 0.625rem;
+  --meter-off: 0.5rem;
+  --meter-gap: 0.125rem;
+  --meter-slot: calc(var(--meter-on) + 0.25rem);
+  display: inline-flex;
+  flex: none;
+  vertical-align: middle;
+}
+
+.meter {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--meter-slot);
+  gap: var(--meter-gap);
+  align-items: center;
+
+  &__step {
+    justify-self: start;
+    width: var(--meter-off);
+    height: var(--meter-off);
+    background: var(--mut);
+
+    &--on {
+      width: var(--meter-on);
+      height: var(--meter-on);
+      background: var(--ac);
+    }
+  }
+}

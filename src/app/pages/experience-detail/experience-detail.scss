@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.split--top {
+  align-items: start;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: var(--rule);
+}
+
+.aside {
+  margin: 0;
+
+  dd {
+    margin: 0 0 1.25rem;
+    overflow-wrap: anywhere;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  &__lead {
+    font-size: 1.25rem;
+  }
+}
+
+ul.tags {
+  margin-top: 0.5rem;
+}
+
+hr.separator {
+  color: var(--fg);
+  margin-bottom: 1.25rem;
+}

@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  padding-inline: var(--gutter);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.5rem;
+  border-bottom: var(--rule);
+
+  &__brand {
+    font-weight: 700;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.on {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--ac);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding-block: 2rem;
+  border-top: var(--rule);
+}

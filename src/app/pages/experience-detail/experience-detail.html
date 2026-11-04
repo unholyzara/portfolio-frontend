@@ -1,0 +1,104 @@
+@if (experience(); as experience) {
+  <article>
+    <a class="back m muted hov" routerLink="/" fragment="esperienza">← Esperienza</a>
+    <h1 class="h detail-title">{{ experience.title }}</h1>
+
+    <div class="split split--top">
+      <dl class="aside">
+        <dt class="m muted">Azienda</dt>
+        <dd class="aside__lead">{{ experience.company.name }}</dd>
+        <dt class="m muted">Periodo</dt>
+        <dd>{{ experience.start_date }} – {{ experience.end_date ?? 'in corso' }}</dd>
+        <dt class="m muted">Sito</dt>
+        <dd>
+          @if (experience.company.website; as website) {
+            <a class="hov" [href]="website" target="_blank" rel="noopener">{{ website }}</a>
+          }
+        </dd>
+        <hr class="separator" />
+        @if (experience.technologies.length > 0) {
+          <dt class="m muted">Tecnologie usate</dt>
+          <dd>
+            <ul class="tags">
+              @for (tech of experience.technologies; track tech.uuid) {
+                <li class="tag m">
+                  <span>{{ tech.name }}</span>
+                  <span class="muted"> {{ tech.level }} / 5 </span>
+                </li>
+              }
+            </ul>
+          </dd>
+        }
+        @if (experience.technical_skills.length > 0) {
+          <dt class="m muted">Technical skills</dt>
+          <dd>
+            <ul class="tags">
+              @for (skill of experience.technical_skills; track skill.uuid) {
+                <li class="tag m">{{ skill.name }}</li>
+              }
+            </ul>
+          </dd>
+        }
+
+        @if (experience.soft_skills.length > 0) {
+          <dt class="m muted">Soft skills</dt>
+          <dd>
+            <ul class="tags">
+              @for (skill of experience.soft_skills; track skill.uuid) {
+                <li class="tag m">{{ skill.name }}</li>
+              }
+            </ul>
+          </dd>
+        }
+      </dl>
+
+      <div>
+        <p class="lead">{{ experience.description }}</p>
+
+        @if (responsibilities().length > 0) {
+          <h2 class="h subtitle">Mansioni</h2>
+          <ul class="list">
+            @for (responsibility of responsibilities(); track responsibility.uuid; let i = $index) {
+              <li class="row row--index">
+                <span class="m">{{ pad(i) }}</span>
+                <span>{{ responsibility.description }}</span>
+              </li>
+            }
+          </ul>
+        }
+
+        @if (projects().length > 0) {
+          <h2 class="h subtitle">Progetti</h2>
+          <ul class="list">
+            @for (project of projects(); track project.uuid; let i = $index) {
+              <li>
+                <a class="row row--index" [routerLink]="['/progetti', project.uuid]">
+                  <span class="m">{{ pad(i) }}</span>
+                  <span class="row__label">{{ project.title }}</span>
+                  <span class="row__arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    <nav class="pager m a-hov" aria-label="Altre esperienze">
+      @if (pager().prev; as prev) {
+        <a [routerLink]="['/esperienza', prev.uuid]">← {{ prev.title }}</a>
+      } @else {
+        <span></span>
+      }
+      @if (pager().next; as next) {
+        <a [routerLink]="['/esperienza', next.uuid]">{{ next.title }} →</a>
+      }
+    </nav>
+  </article>
+} @else {
+  @if (loaded() === true) {
+    <p class="back m">Esperienza non trovata. <a routerLink="/">← Home</a></p>
+  } @else {
+    <p class="back m">Caricamento...</p>
+  }
+}
