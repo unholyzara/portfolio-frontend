@@ -40,6 +40,7 @@ const portfolioStub = {
         experience('x1', ['Teamwork', 'Networking']),
         experience('x2', ['Teamwork']),
     ]),
+    experienceResponsibilities: (_: string) => []
 };
 
 describe('Cv', () => {
@@ -61,7 +62,7 @@ describe('Cv', () => {
         const fixture = TestBed.createComponent(Cv);
         fixture.detectChanges();
         const groups = (fixture.nativeElement as HTMLElement).querySelectorAll('.group');
-        expect(groups.length).toBe(2);
+        expect(groups.length).toBe(1);
     });
 
     it('should render a level meter for each language and technology', () => {

@@ -67,12 +67,6 @@ export interface WorkResponsibility {
   work_experience: WorkExperience
 }
 
-export interface ProjectImage {
-  uuid: string;
-  url: string;
-  alt: string;
-}
-
 export interface ProjectRepository {
   uuid: string;
   project: string;
@@ -86,5 +80,4 @@ export interface Project {
   description: string | null;
   technologies: Technology[];
   work_experience: WorkExperience | null;
-  images: ProjectImage[];
 }

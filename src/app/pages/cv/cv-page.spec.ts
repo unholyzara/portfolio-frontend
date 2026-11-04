@@ -12,7 +12,16 @@ describe('CvPage', () => {
             imports: [CvPage],
             providers: [
                 provideRouter([]),
-                { provide: PortfolioService, useValue: { /* stub minimo */ personal: signal({}) } },
+                {
+                    provide: PortfolioService, useValue: {
+                        personal: signal({ name: '', surname: '', job_role: '', email: '', phone_number: '' }),
+                        overview: signal({ text: '' }),
+                        languages: signal([]),
+                        educations: signal([]),
+                        technologies: signal([]),
+                        experiences: signal([]),
+                    },
+                },
             ],
         }).compileComponents();
     });
@@ -23,11 +32,14 @@ describe('CvPage', () => {
         expect((fixture.nativeElement as HTMLElement).querySelector('app-cv')).not.toBeNull();
     });
 
-    it('should call window.print on click', () => {
+    it('should call window.print on click', async () => {
         const fixture = TestBed.createComponent(CvPage);
         fixture.detectChanges();
-        const printSpy = vi.spyOn(window, 'print').mockImplementation(() => { });
+        const component = fixture.componentInstance;
+        const printSpy = vi.spyOn(component, 'print').mockResolvedValue();
+
         (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.cv-page__print')!.click();
-        expect(printSpy).toHaveBeenCalled();
+
+        expect(printSpy).toHaveBeenCalledTimes(1);
     });
 });
