@@ -164,7 +164,7 @@ ul {
   background: var(--bg);
   border-bottom: var(--rule);
   box-sizing: border-box;
-  height: var(--nav-height);
+  min-height: var(--nav-height);
 }
 
 a.row:hover .row__title,
