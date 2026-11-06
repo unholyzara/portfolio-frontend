@@ -22,7 +22,7 @@ export class ExperieceService extends AbstractApiService {
   readonly responsibilities = this.responsibilityResource.value.asReadonly();
 
   readonly loaded = computed(() =>
-    [this.experiencesResource].every(
+    [this.experiencesResource, this.responsibilityResource].every(
       (resource) => resource.status() === 'resolved' || resource.status() === 'error',
     ),
   );
