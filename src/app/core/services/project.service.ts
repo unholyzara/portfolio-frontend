@@ -22,7 +22,7 @@ export class ProjectService extends AbstractApiService {
   readonly repositories = this.repositoriesResource.value.asReadonly();
 
   readonly loaded = computed(() =>
-    [this.projectsResource].every(
+    [this.projectsResource, this.repositoriesResource].every(
       (resource) => resource.status() === 'resolved' || resource.status() === 'error',
     ),
   );
