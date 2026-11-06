@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { PortfolioService } from '../../../../core/portfolio.service';
+import { EducationService, ExperieceService, PersonaService, TechnologyService } from '../../../../core/services';
 import { Cv } from './cv';
 
 const experience = (uuid: string, softSkills: string[]) => ({
@@ -17,10 +17,13 @@ const experience = (uuid: string, softSkills: string[]) => ({
     technologies: [],
 });
 
-const portfolioStub = {
+const personaStub = {
     personal: signal({ name: 'Mario', surname: 'Rossi', job_role: 'Developer', email: 'm@r.it' }),
     overview: signal({ text: 'Overview' }),
     languages: signal([{ uuid: 'l1', name: 'Italiano', level: 4 }]),
+}
+
+const educationStub = {
     educations: signal([
         {
             uuid: 'e1',
@@ -32,22 +35,34 @@ const portfolioStub = {
             description: '',
         },
     ]),
+}
+
+const technologyStub = {
     technologies: signal([
         { uuid: 't1', name: 'Python', typology: 'language', level: 5 },
         { uuid: 't2', name: 'Django', typology: 'framework', level: 3 },
     ]),
+}
+
+const experienceStub = {
     experiences: signal([
         experience('x1', ['Teamwork', 'Networking']),
         experience('x2', ['Teamwork']),
     ]),
     experienceResponsibilities: (_: string) => []
-};
+}
 
 describe('Cv', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [Cv],
-            providers: [provideRouter([]), { provide: PortfolioService, useValue: portfolioStub }],
+            providers: [
+                provideRouter([]),
+                { provide: PersonaService, useValue: personaStub },
+                { provide: EducationService, useValue: educationStub },
+                { provide: TechnologyService, useValue: technologyStub },
+                { provide: ExperieceService, useValue: experienceStub },
+            ],
         }).compileComponents();
     });
 

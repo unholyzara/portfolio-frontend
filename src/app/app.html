@@ -1,30 +1,42 @@
-<header class="nav m">
-  <a class="nav__brand" routerLink="/">unholyzara.dev</a>
-  <nav class="nav__links" aria-label="Principale">
-    <a href="/" (click)="scrollToSection('progetti', $event)">Progetti</a>
-    <a href="/" (click)="scrollToSection('esperienza', $event)">Esperienza</a>
-    <a href="/" (click)="scrollToSection('formazione', $event)">Formazione</a>
-    <a href="/" (click)="scrollToSection('contatti', $event)">Contatti</a>
-    <button type="button" class="btn m" aria-label="Cambia tema" (click)="settings.toggleTheme()">
-      <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
-        [class.on]="settings.theme() === 'light'"
-        >Light</span
+@if (settings.status().maintenance) {
+  <app-maintenance />
+} @else {
+  <header class="nav m">
+    <a class="nav__brand" routerLink="/">unholyzara.dev</a>
+    <nav class="nav__links" aria-label="Principale">
+      <a href="/" (click)="scrollToSection('progetti', $event)">Progetti</a>
+      <a href="/" (click)="scrollToSection('esperienza', $event)">Esperienza</a>
+      <a href="/" (click)="scrollToSection('formazione', $event)">Formazione</a>
+      <a href="/" (click)="scrollToSection('contatti', $event)">Contatti</a>
+      <button type="button" class="btn m" aria-label="Cambia tema" (click)="settings.toggleTheme()">
+        <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
+          [class.on]="settings.theme() === 'light'"
+          >Light</span
+        >
+      </button>
+      <button
+        type="button"
+        class="btn m"
+        aria-label="Cambia lingua"
+        (click)="settings.toggleLang()"
       >
-    </button>
-    <button type="button" class="btn m" aria-label="Cambia lingua" (click)="settings.toggleLang()">
-      @for (lang of settings.languages; track lang) {
-        <span [class.on]="settings.lang() === lang">{{ lang.toUpperCase() }}</span>
+        @for (lang of settings.languages; track lang) {
+          <span [class.on]="settings.lang() === lang">{{ lang.toUpperCase() }}</span>
 
-        @if (!$last) {
-          &nbsp;/&nbsp;
+          @if (!$last) {
+            &nbsp;/&nbsp;
+          }
         }
+      </button>
+      @if (settings.status().maintenanceStatus) {
+        <span class="tag tag--accent m">Maintanance</span>
       }
-    </button>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<main>
-  <router-outlet />
-</main>
+  <main>
+    <router-outlet />
+  </main>
 
-<footer class="footer m muted">© unholyzara.dev</footer>
+  <footer class="footer m muted">© unholyzara.dev</footer>
+}

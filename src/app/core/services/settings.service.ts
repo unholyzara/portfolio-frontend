@@ -1,9 +1,16 @@
 import { DOCUMENT } from '@angular/common';
+import { httpResource } from '@angular/common/http';
 import { Injectable, effect, inject, signal } from '@angular/core';
+
+import { SiteStatus } from '../models';
 
 export type Theme = 'dark' | 'light';
 export const LANGUAGES = ['it', 'en'] as const;
 export type Lang = (typeof LANGUAGES)[number];
+
+const EMPTY_STATUS: SiteStatus = { maintenance: false };
+
+const SITE_STATUS_URL = '/api/settings/site-status/';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
@@ -13,6 +20,14 @@ export class SettingsService {
 
   readonly theme = signal<Theme>(this.initialTheme());
   readonly lang = signal<Lang>(this.initialLang());
+
+  private readonly statusResource = httpResource<SiteStatus>(
+    () => ({
+      url: SITE_STATUS_URL,
+    }),
+    { defaultValue: EMPTY_STATUS },
+  );
+  readonly status = this.statusResource.value.asReadonly();
 
   constructor() {
     effect(() => {
@@ -29,6 +44,8 @@ export class SettingsService {
         this.theme.set(event.matches ? 'light' : 'dark');
       }
     });
+
+    this.refreshStatus();
   }
 
   private readonly themeMedia = this.doc.defaultView?.matchMedia?.(
@@ -37,6 +54,10 @@ export class SettingsService {
 
   private hasThemeOverride =
     this.read('theme') === 'dark' || this.read('theme') === 'light';
+
+  refreshStatus(): void {
+    this.statusResource.reload();
+  }
 
   toggleTheme(): void {
     this.hasThemeOverride = true;
@@ -91,10 +112,15 @@ export class SettingsService {
 
   private initialTheme(): Theme {
     const stored = this.read('theme');
+
     if (stored === 'dark' || stored === 'light') {
       return stored;
     }
-    const prefersLight = this.doc.defaultView?.matchMedia?.('(prefers-color-scheme: light)')?.matches;
+
+    const prefersLight = this.doc.defaultView?.matchMedia?.(
+      '(prefers-color-scheme: light)',
+    )?.matches;
+
     return prefersLight ? 'light' : 'dark';
   }
 

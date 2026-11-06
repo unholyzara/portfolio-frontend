@@ -1,32 +1,29 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { EducationService, ExperieceService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
 
-import { PortfolioService } from '../../core/portfolio.service';
+import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, JoinNamesPipe, OrdinalPipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-  private readonly portfolio = inject(PortfolioService);
+  private readonly personaService = inject(PersonaService);
+  private readonly experienceService = inject(ExperieceService);
+  private readonly projectService = inject(ProjectService);
+  private readonly educationService = inject(EducationService);
+  private readonly technologyService = inject(TechnologyService);
 
-  protected readonly personal = this.portfolio.personal;
-  protected readonly overview = this.portfolio.overview;
-  protected readonly languages = this.portfolio.languages;
-  protected readonly projects = this.portfolio.projects;
-  protected readonly experiences = this.portfolio.experiences;
-  protected readonly educations = this.portfolio.educations;
-  protected readonly technologies = this.portfolio.technologies;
-
-  protected joinNames(items: readonly { name: string }[]): string {
-    return items.map((item) => item.name).join(' · ');
-  }
-
-  protected pad(index: number): string {
-    return String(index + 1).padStart(2, '0');
-  }
+  protected readonly personal = this.personaService.personal;
+  protected readonly overview = this.personaService.overview;
+  protected readonly languages = this.personaService.languages;
+  protected readonly projects = this.projectService.projects;
+  protected readonly experiences = this.experienceService.experiences;
+  protected readonly educations = this.educationService.educations;
+  protected readonly technologies = this.technologyService.technologies;
 }

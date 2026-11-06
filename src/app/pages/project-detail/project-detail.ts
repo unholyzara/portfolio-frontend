@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { PortfolioService } from '../../core/portfolio.service';
+import { ProjectService } from '../../core/services';
+import { pagerOf } from '../../shared/utils';
 
 @Component({
   selector: 'app-project-detail',
@@ -11,15 +12,13 @@ import { PortfolioService } from '../../core/portfolio.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectDetail {
-  private readonly portfolio = inject(PortfolioService);
+  private readonly projectService = inject(ProjectService);
 
   readonly uuid = input.required<string>();
 
-  protected readonly loaded = this.portfolio.loaded
-  protected readonly project = computed(() => this.portfolio.project(this.uuid()));
-  protected readonly repositories = computed(() => this.portfolio.projectRepositories(this.uuid()));
+  protected readonly loaded = this.projectService.loaded
+  protected readonly project = computed(() => this.projectService.project(this.uuid()));
+  protected readonly repositories = computed(() => this.projectService.projectRepositories(this.uuid()));
 
-  protected readonly pager = computed(() =>
-    this.portfolio.neighbours(this.portfolio.projects(), this.uuid()),
-  );
+  protected readonly pager = pagerOf(this.projectService.projects, this.uuid);
 }

@@ -27,7 +27,7 @@
             <span class="h row__title">{{ experience.title }}</span>
             <span class="row__sub">{{ experience.company.name }}</span>
           </span>
-          <span class="row__more muted">{{ joinNames(experience.technologies) }}</span>
+          <span class="row__more muted">{{ experience.technologies | joinNames }}</span>
           <span class="row__arrow" aria-hidden="true">→</span>
         </a>
       </li>
@@ -42,9 +42,9 @@
     @for (project of projects(); track project.uuid; let i = $index) {
       <li>
         <a class="row" [routerLink]="['/progetti', project.uuid]">
-          <span class="m">{{ pad(i) }}</span>
+          <span class="m">{{ i | ordinal }}</span>
           <span class="h row__title">{{ project.title }}</span>
-          <span class="row__more muted">{{ joinNames(project.technologies) }}</span>
+          <span class="row__more muted">{{ project.technologies | joinNames }}</span>
           <span class="row__arrow" aria-hidden="true">→</span>
         </a>
       </li>

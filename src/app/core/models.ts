@@ -81,3 +81,8 @@ export interface Project {
   technologies: Technology[];
   work_experience: WorkExperience | null;
 }
+
+export interface SiteStatus {
+  maintenance: boolean
+  maintenanceStatus?: boolean;
+}
