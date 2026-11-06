@@ -60,7 +60,7 @@
           <ul class="list">
             @for (responsibility of responsibilities(); track responsibility.uuid; let i = $index) {
               <li class="row row--index">
-                <span class="m">{{ pad(i) }}</span>
+                <span class="m">{{ i | ordinal }}</span>
                 <span>{{ responsibility.description }}</span>
               </li>
             }
@@ -73,7 +73,7 @@
             @for (project of projects(); track project.uuid; let i = $index) {
               <li>
                 <a class="row row--index" [routerLink]="['/progetti', project.uuid]">
-                  <span class="m">{{ pad(i) }}</span>
+                  <span class="m">{{ i | ordinal }}</span>
                   <span class="row__label">{{ project.title }}</span>
                   <span class="row__arrow" aria-hidden="true">→</span>
                 </a>

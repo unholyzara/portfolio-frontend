@@ -1,0 +1,31 @@
+<div class="maintenance">
+  <header class="maintenance__bar m">
+    <span class="maintenance__brand">unholyzara.dev</span>
+    <div class="maintenance__actions">
+      <button type="button" class="btn m" aria-label="Cambia tema" (click)="settings.toggleTheme()">
+        <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
+          [class.on]="settings.theme() === 'light'"
+          >Light</span
+        >
+      </button>
+      <button
+        type="button"
+        class="btn m"
+        aria-label="Cambia lingua"
+        (click)="settings.toggleLang()"
+      >
+        <span [class.on]="settings.lang() === 'it'">IT</span>&nbsp;/&nbsp;<span
+          [class.on]="settings.lang() === 'en'"
+          >EN</span
+        >
+      </button>
+    </div>
+  </header>
+
+  <main class="maintenance__body">
+    <span class="tag tag--accent m">Ongoing</span>
+    <h1 class="h maintenance__title">Under Maintenance</h1>
+    <div class="maintenance__stripes" aria-hidden="true"></div>
+    <button type="button" class="btn btn--accent m" (click)="retry()">Retry →</button>
+  </main>
+</div>

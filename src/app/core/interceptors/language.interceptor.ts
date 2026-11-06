@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { SettingsService } from '../settings.service';
+import { SettingsService } from '../services/settings.service';
 
 export const languageInterceptor: HttpInterceptorFn = (req, next) => {
     const settings = inject(SettingsService);
