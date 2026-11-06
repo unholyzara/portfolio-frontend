@@ -3,7 +3,7 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { PortfolioService } from '../../core/portfolio.service';
+import { EducationService, ExperieceService, PersonaService, TechnologyService } from '../../core/services';
 import { CvPage } from './cv-page';
 
 describe('CvPage', () => {
@@ -13,12 +13,24 @@ describe('CvPage', () => {
             providers: [
                 provideRouter([]),
                 {
-                    provide: PortfolioService, useValue: {
+                    provide: PersonaService, useValue: {
                         personal: signal({ name: '', surname: '', job_role: '', email: '', phone_number: '' }),
                         overview: signal({ text: '' }),
                         languages: signal([]),
+                    },
+                },
+                {
+                    provide: EducationService, useValue: {
                         educations: signal([]),
+                    },
+                },
+                {
+                    provide: TechnologyService, useValue: {
                         technologies: signal([]),
+                    },
+                },
+                {
+                    provide: ExperieceService, useValue: {
                         experiences: signal([]),
                     },
                 },

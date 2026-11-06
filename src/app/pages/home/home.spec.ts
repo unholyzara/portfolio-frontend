@@ -13,7 +13,7 @@ import {
   Technology,
   WorkExperience
 } from '../../core/models';
-import { PortfolioService } from '../../core/portfolio.service';
+import { EducationService, ExperieceService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
 import { Home } from './home';
 
 const range = <T>(length: number, build: (index: number) => T): T[] =>
@@ -79,21 +79,40 @@ const PROJECTS: Project[] = range(3, (i) => ({
   work_experience: WORK_EXPERIENCES[i],
 }));
 
-const portfolioStub = {
+const personaStub = {
   personal: signal(PERSONAL_INFO),
   overview: signal(OVERVIEW),
   languages: signal(SPOKEN_LANGUAGES),
+}
+
+const educationStub = {
   educations: signal(EDUCATIONS),
+}
+
+const technologyStub = {
   technologies: signal(TECHNOLOGIES),
+}
+
+const experienceStub = {
   experiences: signal(WORK_EXPERIENCES),
+}
+
+const projectStub = {
   projects: signal(PROJECTS),
-};
+}
 
 describe('Home', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Home],
-      providers: [provideRouter([]), { provide: PortfolioService, useValue: portfolioStub }],
+      providers: [
+        provideRouter([]),
+        { provide: PersonaService, useValue: personaStub },
+        { provide: EducationService, useValue: educationStub },
+        { provide: TechnologyService, useValue: technologyStub },
+        { provide: ExperieceService, useValue: experienceStub },
+        { provide: ProjectService, useValue: projectStub },
+      ],
     }).compileComponents();
   });
 
