@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { EducationService, ExperieceService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
+import { EducationService, ExperieceService, LanguageService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
 
 import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
 
@@ -14,6 +14,7 @@ import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
 })
 export class Home {
   private readonly personaService = inject(PersonaService);
+  private readonly languageService = inject(LanguageService);
   private readonly experienceService = inject(ExperieceService);
   private readonly projectService = inject(ProjectService);
   private readonly educationService = inject(EducationService);
@@ -21,7 +22,7 @@ export class Home {
 
   protected readonly personal = this.personaService.personal;
   protected readonly overview = this.personaService.overview;
-  protected readonly languages = this.personaService.languages;
+  protected readonly languages = this.languageService.languages;
   protected readonly projects = this.projectService.projects;
   protected readonly experiences = this.experienceService.experiences;
   protected readonly educations = this.educationService.educations;

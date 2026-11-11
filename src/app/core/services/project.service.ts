@@ -12,10 +12,10 @@ import { ENDPOINTS, listResource } from './utils';
 @Injectable({ providedIn: 'root' })
 export class ProjectService extends AbstractApiService {
   private readonly projectsResource = listResource<Project>(
-    ENDPOINTS.projects, this.settings.lang
+    ENDPOINTS.projects
   );
   private readonly repositoriesResource = listResource<ProjectRepository>(
-    ENDPOINTS.repositories, this.settings.lang
+    ENDPOINTS.repositories
   );
 
   readonly projects = this.projectsResource.value.asReadonly();

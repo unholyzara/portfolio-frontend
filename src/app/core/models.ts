@@ -1,12 +1,14 @@
 export interface PersonalInfo {
   name: string;
   surname: string;
+  location: string;
   job_role: string;
   email: string;
   phone_number: string
 }
 
 export interface Overview {
+  short_text: string;
   text: string;
 }
 

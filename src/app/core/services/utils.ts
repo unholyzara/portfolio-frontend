@@ -1,7 +1,4 @@
 import { httpResource } from '@angular/common/http';
-import { Signal } from '@angular/core';
-
-import { Lang } from './settings.service';
 
 const API = '/api';
 
@@ -20,13 +17,10 @@ export const ENDPOINTS = {
 const unwrap = <T>(body: unknown): T[] =>
     Array.isArray(body) ? (body as T[]) : ((body as { results?: T[] }).results ?? []);
 
-export const listResource = <T>(url: string, lang: Signal<Lang>) =>
+export const listResource = <T>(url: string) =>
     httpResource<T[]>(
         () => ({
             url,
-            headers: {
-                'Accept-Language': lang(),
-            },
         }),
         {
             parse: body => unwrap<T>(body),
