@@ -5,17 +5,21 @@ import { SettingsService } from '../settings.service';
 export abstract class AbstractApiService {
     protected readonly settings = inject(SettingsService);
 
-    private wasInMaintenance = false;
+    private lastMaintenance = this.settings.status().maintenance;
+    private lastLang = this.settings.lang();
 
     constructor() {
         effect(() => {
             const maintenance = this.settings.status().maintenance;
+            const lang = this.settings.lang();
 
-            if (this.wasInMaintenance !== maintenance) {
-                untracked(() => this.reloadData());
+            if (maintenance === this.lastMaintenance && lang === this.lastLang) {
+                return;
             }
 
-            this.wasInMaintenance = maintenance;
+            this.lastMaintenance = maintenance;
+            this.lastLang = lang;
+            untracked(() => this.reloadData());
         });
     }
 

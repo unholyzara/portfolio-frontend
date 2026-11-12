@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
 import { Technology } from '../../../../core/models';
-import { EducationService, ExperieceService, PersonaService, TechnologyService } from '../../../../core/services';
-import { Icon } from '../../../../shared/icon/icon';
-import { LevelMeter } from '../../../../shared/level-meter/level-meter';
+import { EducationService, ExperieceService, LanguageService, PersonaService, TechnologyService } from '../../../../core/services';
+import { Icon } from '../../../../shared/components/icon';
+import { LevelMeter } from '../../../../shared/components/level-meter';
 
 const TYPOLOGY_LABELS: Record<string, string> = {
     language: 'Linguaggi',
@@ -25,13 +25,14 @@ const TYPOLOGY_LABELS: Record<string, string> = {
 })
 export class Cv {
     private readonly personaService = inject(PersonaService);
+    private readonly languageService = inject(LanguageService);
     private readonly educationService = inject(EducationService);
     private readonly experienceService = inject(ExperieceService);
     private readonly technologyService = inject(TechnologyService);
 
     protected readonly personal = this.personaService.personal;
     protected readonly overview = this.personaService.overview;
-    protected readonly languages = this.personaService.languages;
+    protected readonly languages = this.languageService.languages;
     protected readonly educations = this.educationService.educations;
     protected readonly experiences = this.experienceService.experiences;
 

@@ -1,0 +1,27 @@
+<div class="carousel" role="group" aria-roledescription="carousel" [attr.aria-label]="label()">
+  @if (canPrev() || canNext()) {
+    <div class="carousel__controls">
+      <button
+        type="button"
+        class="carousel__btn m"
+        aria-label="Precedente"
+        [disabled]="!canPrev()"
+        (click)="scroll(-1)"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        class="carousel__btn m"
+        aria-label="Successivo"
+        [disabled]="!canNext()"
+        (click)="scroll(1)"
+      >
+        →
+      </button>
+    </div>
+  }
+  <ul class="carousel__track" #track (scroll)="update()">
+    <ng-content />
+  </ul>
+</div>

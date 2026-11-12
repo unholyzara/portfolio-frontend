@@ -1,12 +1,14 @@
 export interface PersonalInfo {
   name: string;
   surname: string;
+  location: string;
   job_role: string;
   email: string;
   phone_number: string
 }
 
 export interface Overview {
+  short_text: string;
   text: string;
 }
 
@@ -76,6 +78,7 @@ export interface ProjectRepository {
 
 export interface Project {
   uuid: string;
+  in_homepage: boolean;
   title: string;
   description: string | null;
   technologies: Technology[];

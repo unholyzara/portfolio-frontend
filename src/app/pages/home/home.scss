@@ -5,17 +5,27 @@
 .hero {
   padding-block: clamp(3rem, 8vw, 4.5rem) 4rem;
 
+  &__top {
+    align-items: end;
+  }
+
   &__name {
-    margin-top: 1.25rem;
-    font-size: clamp(3rem, 11.5vw, 10rem);
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 7rem);
     overflow-wrap: anywhere;
   }
 
-  &__body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-    margin-top: 3.5rem;
+  &__lead {
+    max-width: 44ch;
+    margin: 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--ac);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  &__meta {
+    margin-top: 2.5rem;
   }
 }
 
@@ -23,6 +33,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3.5rem;
+
+  > * {
+    min-width: 0;
+  }
 }
 
 .section-number {
@@ -47,7 +61,6 @@
 }
 
 @media (max-width: 760px) {
-  .hero__body,
   .duo {
     grid-template-columns: 1fr;
     gap: 2rem;

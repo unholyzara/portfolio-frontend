@@ -3,12 +3,13 @@ import { RouterLink } from '@angular/router';
 
 import { ExperieceService, ProjectService } from '../../core/services';
 
-import { OrdinalPipe } from '../../shared/pipes';
+import { Carousel } from '../../shared/components/carousel';
+import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
 import { pagerOf } from '../../shared/utils';
 
 @Component({
   selector: 'app-experience-detail',
-  imports: [RouterLink, OrdinalPipe],
+  imports: [RouterLink, Carousel, OrdinalPipe, JoinNamesPipe],
   templateUrl: './experience-detail.html',
   styleUrl: './experience-detail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

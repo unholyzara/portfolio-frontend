@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  container-type: inline-size;
+}
+
+.carousel {
+  --gap: 1rem;
+  --visible: 1;
+
+  display: grid;
+  gap: 1rem;
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  &__btn {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition:
+      color 0.15s,
+      border-color 0.15s;
+
+    &:hover:not(:disabled),
+    &:focus-visible {
+      border-color: var(--ac);
+      color: var(--ac);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  &__track {
+    --card-basis: calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible));
+
+    display: flex;
+    gap: var(--gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@container (min-width: 38rem) {
+  .carousel {
+    --visible: 2;
+  }
+}

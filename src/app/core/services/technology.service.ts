@@ -10,7 +10,7 @@ import { ENDPOINTS, listResource } from './utils';
 @Injectable({ providedIn: 'root' })
 export class TechnologyService extends AbstractApiService {
   private readonly technologiesResource = listResource<Technology>(
-    ENDPOINTS.technologies, this.settings.lang
+    ENDPOINTS.technologies
   );
 
   readonly technologies = this.technologiesResource.value.asReadonly();

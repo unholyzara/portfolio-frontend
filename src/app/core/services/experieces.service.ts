@@ -12,10 +12,10 @@ import { ENDPOINTS, listResource } from './utils';
 @Injectable({ providedIn: 'root' })
 export class ExperieceService extends AbstractApiService {
   private readonly experiencesResource = listResource<WorkExperience>(
-    ENDPOINTS.experiences, this.settings.lang
+    ENDPOINTS.experiences
   );
   private readonly responsibilityResource = listResource<WorkResponsibility>(
-    ENDPOINTS.responsibilities, this.settings.lang
+    ENDPOINTS.responsibilities
   );
 
   readonly experiences = this.experiencesResource.value.asReadonly();

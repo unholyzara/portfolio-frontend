@@ -4,7 +4,6 @@ import { SettingsService } from '../services/settings.service';
 
 export const languageInterceptor: HttpInterceptorFn = (req, next) => {
     const settings = inject(SettingsService);
-
     const modifiedReq = req.clone({
         setHeaders: {
             'Accept-Language': settings.lang(),
