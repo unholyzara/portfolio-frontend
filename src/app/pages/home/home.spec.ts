@@ -73,6 +73,7 @@ const WORK_EXPERIENCES: WorkExperience[] = range(3, (i) => ({
 }));
 const PROJECTS: Project[] = range(3, (i) => ({
   uuid: `uuid-${i}`,
+  in_homepage: true,
   title: `title ${i}`,
   description: `description ${i}`,
   technologies: TECHNOLOGIES.slice(0, 5),
@@ -124,7 +125,7 @@ describe('Home', () => {
   it('should render one row for each project', () => {
     const fixture = TestBed.createComponent(Home);
     fixture.detectChanges();
-    const rows = fixture.nativeElement.querySelectorAll('#progetti .row');
+    const rows = fixture.nativeElement.querySelectorAll('#progetti .card');
     expect(rows.length).toBe(PROJECTS.length);
   });
 });

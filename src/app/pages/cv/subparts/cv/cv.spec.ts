@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { EducationService, ExperieceService, PersonaService, TechnologyService } from '../../../../core/services';
+import { EducationService, ExperieceService, LanguageService, PersonaService, TechnologyService } from '../../../../core/services';
 import { Cv } from './cv';
 
 const experience = (uuid: string, softSkills: string[]) => ({
@@ -20,6 +20,9 @@ const experience = (uuid: string, softSkills: string[]) => ({
 const personaStub = {
     personal: signal({ name: 'Mario', surname: 'Rossi', job_role: 'Developer', email: 'm@r.it' }),
     overview: signal({ text: 'Overview' }),
+}
+
+const languageStub = {
     languages: signal([{ uuid: 'l1', name: 'Italiano', level: 4 }]),
 }
 
@@ -59,6 +62,7 @@ describe('Cv', () => {
             providers: [
                 provideRouter([]),
                 { provide: PersonaService, useValue: personaStub },
+                { provide: LanguageService, useValue: languageStub },
                 { provide: EducationService, useValue: educationStub },
                 { provide: TechnologyService, useValue: technologyStub },
                 { provide: ExperieceService, useValue: experienceStub },
