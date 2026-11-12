@@ -1,50 +1,74 @@
 <header class="hero">
-  <div class="duo">
-    <section>
-      <h1 class="h hero__name">{{ personal().name }}<br />{{ personal().surname }}</h1>
-      <p class="m muted">{{ personal().job_role }}</p>
-      <p class="m muted">{{ personal().location }}</p>
-      <div class="cta__actions">
-        <a class="btn btn--accent m" [routerLink]="['/cv']">CV →</a>
-        <a class="m hov" [href]="'mailto:' + personal().email">{{ personal().email }}</a>
-        <a class="m hov" href="https://github.com/unholyzara" target="_blank" rel="noopener">
-          GitHub
-        </a>
-        <a
-          class="m hov"
-          href="https://it.linkedin.com/in/mattia-zaramella-b47771245"
-          target="_blank"
-          rel="noopener"
-        >
-          linkedin
-        </a>
-      </div>
-    </section>
-    <p class="lead">{{ overview().short_text }}</p>
+  <div class="duo hero__top">
+    <h1 class="h hero__name">{{ personal().name }}<br />{{ personal().surname }}</h1>
+    <p class="lead hero__lead">{{ overview().short_text }}</p>
+  </div>
+  <div class="hero__meta">
+    <p class="m muted">{{ personal().job_role }} · {{ personal().location }}</p>
+    <div class="cta__actions">
+      <a class="btn btn--accent m" [routerLink]="['/cv']">CV →</a>
+      <a class="m hov" [href]="'mailto:' + personal().email">{{ personal().email }}</a>
+      <a class="m hov" href="https://github.com/unholyzara" target="_blank" rel="noopener">
+        GitHub
+      </a>
+      <a
+        class="m hov"
+        href="https://it.linkedin.com/in/mattia-zaramella-b47771245"
+        target="_blank"
+        rel="noopener"
+      >
+        linkedin
+      </a>
+    </div>
   </div>
 </header>
 
-<section class="section" id="esperienza" aria-labelledby="esperienza-title">
-  <p class="m muted"><span class="section-number">01</span> / Sezione</p>
-  <h2 class="h section__title" id="esperienza-title">Esperienza</h2>
-  <ul class="list">
-    @for (experience of experiences(); track experience.uuid) {
-      <li>
-        <a class="row row--period" [routerLink]="['/esperienza', experience.uuid]">
-          <span class="m"
-            >{{ experience.start_date }} – {{ experience.end_date ?? 'in corso' }}</span
-          >
-          <span>
-            <span class="h row__title">{{ experience.title }}</span>
-            <span class="row__sub">{{ experience.company.name }}</span>
-          </span>
-          <span class="row__more muted">{{ experience.technologies | joinNames }}</span>
-          <span class="row__arrow" aria-hidden="true">→</span>
-        </a>
-      </li>
-    }
-  </ul>
-</section>
+<div class="duo">
+  <section class="section" id="esperienza" aria-labelledby="esperienza-title">
+    <p class="m muted"><span class="section-number">01</span> / Sezione</p>
+    <h2 class="h section__title" id="esperienza-title">Esperienza</h2>
+    <app-carousel label="Esperienza">
+      @for (experience of experiences(); track experience.uuid) {
+        <li class="card">
+          <a class="card__link" [routerLink]="['/esperienza', experience.uuid]">
+            <span class="card__head">
+              <span class="m muted"
+                >{{ experience.start_date }} – {{ experience.end_date ?? 'in corso' }}</span
+              >
+              <span class="h card__title">{{ experience.title }}</span>
+              <span class="card__sub">{{ experience.company.name }}</span>
+            </span>
+            <span class="card__foot">
+              <span class="card__tech muted">{{ experience.technologies | joinNames }}</span>
+              <span class="card__arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      }
+    </app-carousel>
+  </section>
+
+  <section class="section" id="progetti" aria-labelledby="progetti-title">
+    <p class="m muted"><span class="section-number">02</span> / Sezione</p>
+    <h2 class="h section__title" id="progetti-title">Progetti</h2>
+    <app-carousel label="Progetti">
+      @for (project of projects(); track project.uuid; let i = $index) {
+        <li class="card">
+          <a class="card__link" [routerLink]="['/progetti', project.uuid]">
+            <span class="card__head">
+              <span class="m muted">{{ i | ordinal }}</span>
+              <span class="h card__title">{{ project.title }}</span>
+            </span>
+            <span class="card__foot">
+              <span class="card__tech muted">{{ project.technologies | joinNames }}</span>
+              <span class="card__arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      }
+    </app-carousel>
+  </section>
+</div>
 
 <div class="duo">
   <section class="section" id="formazione" aria-labelledby="formazione-title">
@@ -75,20 +99,3 @@
     </ul>
   </section>
 </div>
-
-<section class="section" id="progetti" aria-labelledby="progetti-title">
-  <p class="m muted"><span class="section-number">02</span> / Sezione</p>
-  <h2 class="h section__title" id="progetti-title">Progetti</h2>
-  <ul class="list">
-    @for (project of projects(); track project.uuid; let i = $index) {
-      <li>
-        <a class="row" [routerLink]="['/progetti', project.uuid]">
-          <span class="m">{{ i | ordinal }}</span>
-          <span class="h row__title">{{ project.title }}</span>
-          <span class="row__more muted">{{ project.technologies | joinNames }}</span>
-          <span class="row__arrow" aria-hidden="true">→</span>
-        </a>
-      </li>
-    }
-  </ul>
-</section>

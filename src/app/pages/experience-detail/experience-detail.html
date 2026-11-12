@@ -69,17 +69,22 @@
 
         @if (projects().length > 0) {
           <h2 class="h subtitle">Progetti</h2>
-          <ul class="list">
+          <app-carousel label="Progetti">
             @for (project of projects(); track project.uuid; let i = $index) {
-              <li>
-                <a class="row row--index" [routerLink]="['/progetti', project.uuid]">
-                  <span class="m">{{ i | ordinal }}</span>
-                  <span class="row__label">{{ project.title }}</span>
-                  <span class="row__arrow" aria-hidden="true">→</span>
+              <li class="card">
+                <a class="card__link" [routerLink]="['/progetti', project.uuid]">
+                  <span class="card__head">
+                    <span class="m muted">{{ i | ordinal }}</span>
+                    <span class="h card__title">{{ project.title }}</span>
+                  </span>
+                  <span class="card__foot">
+                    <span class="card__tech muted">{{ project.technologies | joinNames }}</span>
+                    <span class="card__arrow" aria-hidden="true">→</span>
+                  </span>
                 </a>
               </li>
             }
-          </ul>
+          </app-carousel>
         }
       </div>
     </div>

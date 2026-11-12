@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 
 import { Technology } from '../../../../core/models';
 import { EducationService, ExperieceService, LanguageService, PersonaService, TechnologyService } from '../../../../core/services';
-import { Icon } from '../../../../shared/icon/icon';
-import { LevelMeter } from '../../../../shared/level-meter/level-meter';
+import { Icon } from '../../../../shared/components/icon';
+import { LevelMeter } from '../../../../shared/components/level-meter';
 
 const TYPOLOGY_LABELS: Record<string, string> = {
     language: 'Linguaggi',

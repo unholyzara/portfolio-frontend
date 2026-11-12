@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { EducationService, ExperieceService, LanguageService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
 
+import { Carousel } from '../../shared/components/carousel';
 import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, JoinNamesPipe, OrdinalPipe],
+  imports: [RouterLink, Carousel, JoinNamesPipe, OrdinalPipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +24,7 @@ export class Home {
   protected readonly personal = this.personaService.personal;
   protected readonly overview = this.personaService.overview;
   protected readonly languages = this.languageService.languages;
-  protected readonly projects = this.projectService.projects;
+  protected readonly projects = computed(() => this.projectService.projects().filter(prj => prj.in_homepage));
   protected readonly experiences = this.experienceService.experiences;
   protected readonly educations = this.educationService.educations;
   protected readonly technologies = this.technologyService.technologies;
