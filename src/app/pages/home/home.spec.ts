@@ -24,9 +24,10 @@ const PERSONAL_INFO: PersonalInfo = {
   surname: '[Surname]',
   job_role: 'job_role',
   email: 'email',
-  phone_number: 'xxxxx'
+  phone_number: 'xxxxx',
+  location: "Padua, Italy"
 };
-const OVERVIEW: Overview = { text: 'text' };
+const OVERVIEW: Overview = { short_text: "short_text", text: 'text' };
 const SPOKEN_LANGUAGES: SpokenLanguage[] = range(2, (i) => ({
   uuid: `uuid-${i}`,
   id: `l${i}`,
