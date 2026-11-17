@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { RouterLink } from '@angular/router';
 
 import { ProjectService } from '../../core/services';
+import { Diagram } from '../../shared/components/diagram';
 import { pagerOf } from '../../shared/utils';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, Diagram],
   templateUrl: './project-detail.html',
   styleUrl: './project-detail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

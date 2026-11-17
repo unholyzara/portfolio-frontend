@@ -79,6 +79,7 @@ export interface ProjectRepository {
 export interface Project {
   uuid: string;
   in_homepage: boolean;
+  is_portfolio: boolean;
   title: string;
   description: string | null;
   technologies: Technology[];

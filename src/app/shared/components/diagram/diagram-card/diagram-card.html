@@ -1,0 +1,25 @@
+@for (side of sides; track side) {
+  <handle type="source" [position]="side" [id]="'out-' + side" />
+  <handle type="target" [position]="side" [id]="'in-' + side" />
+}
+@if (data(); as data) {
+  <span class="tag">{{ data.tag }}</span>
+  <strong class="name">{{ data.label }}</strong>
+  @if (data.stack) {
+    <span class="stack">{{ data.stack }}</span>
+  }
+  @if (data.hosts) {
+    <ul class="hosts">
+      @for (host of data.hosts; track host) {
+        <li>{{ host }}</li>
+      }
+    </ul>
+  }
+  @if (data.chips.length) {
+    <ul class="chips">
+      @for (chip of data.chips; track chip) {
+        <li>{{ chip }}</li>
+      }
+    </ul>
+  }
+}

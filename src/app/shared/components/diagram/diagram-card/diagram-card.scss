@@ -1,0 +1,79 @@
+:host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 3px solid var(--diagram-ink);
+  overflow: hidden;
+}
+
+:host(.optional) {
+  border-style: dashed;
+}
+
+:host([data-kind='frontend']),
+:host([data-kind='backend']) {
+  background: var(--diagram-accent);
+  border-color: var(--diagram-accent);
+  color: var(--diagram-on-accent);
+}
+
+:host([data-kind='database']) {
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+:host([data-kind='aws']),
+:host([data-kind='client']) {
+  border-color: var(--diagram-muted);
+}
+
+handle {
+  opacity: 0;
+}
+
+.tag {
+  font-family: var(--diagram-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.name {
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.stack {
+  font-size: 0.875rem;
+}
+
+.hosts,
+.chips {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--diagram-mono);
+  font-size: 11px;
+}
+
+.hosts {
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.chips {
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+
+  li {
+    padding: 2px 8px;
+    border: 1.5px solid currentColor;
+  }
+}

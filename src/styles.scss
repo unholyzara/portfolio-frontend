@@ -308,6 +308,10 @@ a.row:hover .row__label,
   }
 }
 
+svg.root-svg {
+  background-color: transparent !important;
+}
+
 @media (max-width: 760px) {
   .row,
   .row--period,
