@@ -5,7 +5,12 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { DiagramService } from './diagram.service';
 
-const URL = '/diagram/architecture.svg';
+const URL = '/diagram/architecture.json';
+const VALID_DIAGRAM = {
+    host: 'portfolio',
+    nodes: [],
+    edges: [],
+};
 
 describe('DiagramService', () => {
     let service: DiagramService;
@@ -19,15 +24,15 @@ describe('DiagramService', () => {
         http = TestBed.inject(HttpTestingController);
     });
 
-    it('becomes ready when the response is an svg', () => {
+    it('becomes ready when the response is valid diagram data', () => {
         service.load();
-        http.expectOne(URL).flush('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
+        http.expectOne(URL).flush(VALID_DIAGRAM);
         expect(service.state().status).toBe('ready');
     });
 
-    it('becomes error when the response is not an svg', () => {
+    it('becomes error when the response is not valid diagram data', () => {
         service.load();
-        http.expectOne(URL).flush('<!doctype html><html></html>');
+        http.expectOne(URL).flush({ host: 'portfolio' });
         expect(service.state().status).toBe('error');
     });
 
