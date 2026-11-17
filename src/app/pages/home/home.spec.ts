@@ -75,6 +75,7 @@ const WORK_EXPERIENCES: WorkExperience[] = range(3, (i) => ({
 const PROJECTS: Project[] = range(3, (i) => ({
   uuid: `uuid-${i}`,
   in_homepage: true,
+  is_portfolio: false,
   title: `title ${i}`,
   description: `description ${i}`,
   technologies: TECHNOLOGIES.slice(0, 5),
