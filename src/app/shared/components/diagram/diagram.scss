@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  --diagram-ink: currentColor;
+  --diagram-muted: color-mix(in srgb, currentColor 40%, transparent);
+  --diagram-accent: var(--color-accent, #c5f82a);
+  --diagram-on-accent: #111;
+  --diagram-mono: var(--font-mono, ui-monospace, monospace);
+}
+
+:host ::ng-deep .vflow {
+  background-color: transparent !important;
+}
+
+.diagram {
+  margin: 0;
+}
+
+.diagram__scroll {
+  overflow-x: auto;
+}
+
+.diagram__stage {
+  width: 100%;
+  min-width: 56rem;
+}
+
+vflow {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.diagram__skeleton {
+  min-height: 20rem;
+  border: 3px dashed var(--diagram-muted);
+}
+
+.diagram__error {
+  margin: 0;
+  padding: 1.5rem;
+  border: 3px solid var(--diagram-ink);
+}

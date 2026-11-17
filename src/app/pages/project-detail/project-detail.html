@@ -55,6 +55,13 @@
       </div>
     }
 
+    @if (project.is_portfolio) {
+      <div>
+        <h2 class="h subtitle">Architettura</h2>
+        <app-diagram ariaLabel="labels.diagram" errorLabel="labels.diagramError" />
+      </div>
+    }
+
     <nav class="pager m" aria-label="Altri progetti">
       @if (pager().prev; as prev) {
         <a [routerLink]="['/progetti', prev.uuid]">← {{ prev.title }}</a>
