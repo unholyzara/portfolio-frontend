@@ -66,7 +66,7 @@ export interface WorkResponsibility {
   uuid: string
   description: string
   order: number
-  work_experience: WorkExperience
+  work_experience: string
 }
 
 export interface ProjectRepository {
