@@ -37,6 +37,6 @@ export class ExperieceService extends AbstractApiService {
   }
 
   experienceResponsibilities(uuid: string): WorkResponsibility[] {
-    return this.responsibilities().filter((item) => item.work_experience.uuid === uuid);
+    return this.responsibilities().filter((item) => item.work_experience === uuid);
   }
 }
