@@ -23,7 +23,7 @@ const personaStub = {
 }
 
 const languageStub = {
-    languages: signal([{ uuid: 'l1', name: 'Italiano', level: 4 }]),
+    languages: signal([{ uuid: 'l1', name: 'Italian', level: 4 }]),
 }
 
 const educationStub = {

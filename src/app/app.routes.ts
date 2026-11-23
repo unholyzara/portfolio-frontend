@@ -8,13 +8,13 @@ export const routes: Routes = [
     },
     {
         path: 'progetti/:uuid',
-        title: 'Progetto',
+        title: 'Project',
         loadComponent: () =>
             import('./pages/project-detail/project-detail').then((m) => m.ProjectDetail),
     },
     {
         path: 'esperienza/:uuid',
-        title: 'Esperienza',
+        title: 'Experience',
         loadComponent: () =>
             import('./pages/experience-detail/experience-detail').then((m) => m.ExperienceDetail),
     },

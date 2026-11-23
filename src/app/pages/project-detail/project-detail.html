@@ -1,27 +1,27 @@
 @if (project(); as project) {
   <article>
-    <a class="back m muted" routerLink="/" fragment="progetti">← Progetti</a>
+    <a class="back m muted" routerLink="/" fragment="progetti">← Projects</a>
     <h1 class="h detail-title">{{ project.title }}</h1>
 
     @if (project.work_experience) {
       <dl class="meta">
         <div>
-          <dt class="m muted">Contesto</dt>
+          <dt class="m muted">Context</dt>
           <dd>{{ project.work_experience.title }}</dd>
         </div>
         <div>
-          <dt class="m muted">Azienda</dt>
+          <dt class="m muted">Company</dt>
           <dd>{{ project.work_experience.company.name }}</dd>
         </div>
       </dl>
     } @else {
       <ul class="tags">
-        <li class="tag m">Progetto Personale</li>
+        <li class="tag m">Personal Project</li>
       </ul>
     }
 
     <div class="split">
-      <h2 class="h subtitle">Cosa fa</h2>
+      <h2 class="h subtitle">What it does</h2>
       <p class="lead">{{ project.description }}</p>
     </div>
 
@@ -57,12 +57,12 @@
 
     @if (project.is_portfolio) {
       <div>
-        <h2 class="h subtitle">Architettura</h2>
+        <h2 class="h subtitle">Architecture</h2>
         <app-diagram ariaLabel="labels.diagram" errorLabel="labels.diagramError" />
       </div>
     }
 
-    <nav class="pager m" aria-label="Altri progetti">
+    <nav class="pager m" aria-label="Other projects">
       @if (pager().prev; as prev) {
         <a [routerLink]="['/progetti', prev.uuid]">← {{ prev.title }}</a>
       } @else {
@@ -75,8 +75,8 @@
   </article>
 } @else {
   @if (loaded() === true) {
-    <p class="back m">Progetto non trovato. <a routerLink="/">← Home</a></p>
+    <p class="back m">Project not found. <a routerLink="/">← Home</a></p>
   } @else {
-    <p class="back m">Caricamento...</p>
+    <p class="back m">Loading...</p>
   }
 }

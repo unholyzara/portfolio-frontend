@@ -35,6 +35,6 @@ describe('LevelMeter', () => {
 
     it('should expose the level to assistive technologies', () => {
         const element = render(4);
-        expect(element.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Livello 4 su 5');
+        expect(element.querySelector('[role="img"]')?.getAttribute('aria-label')).toBe('Level 4 of 5');
     });
 });

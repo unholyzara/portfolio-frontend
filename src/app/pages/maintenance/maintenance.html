@@ -2,7 +2,7 @@
   <header class="maintenance__bar m">
     <span class="maintenance__brand">unholyzara.dev</span>
     <div class="maintenance__actions">
-      <button type="button" class="btn m" aria-label="Cambia tema" (click)="settings.toggleTheme()">
+      <button type="button" class="btn m" aria-label="Change theme" (click)="settings.toggleTheme()">
         <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
           [class.on]="settings.theme() === 'light'"
           >Light</span
@@ -11,7 +11,7 @@
       <button
         type="button"
         class="btn m"
-        aria-label="Cambia lingua"
+        aria-label="Change language"
         (click)="settings.toggleLang()"
       >
         <span [class.on]="settings.lang() === 'it'">IT</span>&nbsp;/&nbsp;<span

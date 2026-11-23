@@ -3,12 +3,12 @@
 } @else {
   <header class="nav m">
     <a class="nav__brand" routerLink="/">unholyzara.dev</a>
-    <nav class="nav__links" aria-label="Principale">
-      <a href="/" (click)="scrollToSection('progetti', $event)">Progetti</a>
-      <a href="/" (click)="scrollToSection('esperienza', $event)">Esperienza</a>
-      <a href="/" (click)="scrollToSection('formazione', $event)">Formazione</a>
-      <a href="/" (click)="scrollToSection('contatti', $event)">Contatti</a>
-      <button type="button" class="btn m" aria-label="Cambia tema" (click)="settings.toggleTheme()">
+    <nav class="nav__links" aria-label="Main">
+      <a href="/" (click)="scrollToSection('progetti', $event)">Projects</a>
+      <a href="/" (click)="scrollToSection('esperienza', $event)">Experience</a>
+      <a href="/" (click)="scrollToSection('formazione', $event)">Education</a>
+      <a href="/" (click)="scrollToSection('contatti', $event)">Contacts</a>
+      <button type="button" class="btn m" aria-label="Change theme" (click)="settings.toggleTheme()">
         <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
           [class.on]="settings.theme() === 'light'"
           >Light</span
@@ -17,7 +17,7 @@
       <button
         type="button"
         class="btn m"
-        aria-label="Cambia lingua"
+        aria-label="Change language"
         (click)="settings.toggleLang()"
       >
         @for (lang of settings.languages; track lang) {

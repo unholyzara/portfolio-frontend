@@ -20,6 +20,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const nav = fixture.nativeElement.querySelector('nav') as HTMLElement;
-    expect(nav.textContent).toContain('Progetti');
+    expect(nav.textContent).toContain('Projects');
   });
 });
