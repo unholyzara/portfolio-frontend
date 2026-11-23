@@ -11,6 +11,7 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router
 import { filter } from 'rxjs';
 
 import { SettingsService } from './core/services/settings.service';
+import { I18nService } from './i18n';
 import { Maintenance } from './pages/maintenance/maintenance';
 
 @Component({
@@ -22,6 +23,7 @@ import { Maintenance } from './pages/maintenance/maintenance';
 })
 export class App {
   protected readonly settings = inject(SettingsService);
+  protected readonly t = inject(I18nService).t;
 
   private readonly doc = inject(DOCUMENT);
   private readonly router = inject(Router);

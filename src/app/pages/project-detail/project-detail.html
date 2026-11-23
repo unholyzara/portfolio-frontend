@@ -1,32 +1,32 @@
 @if (project(); as project) {
   <article>
-    <a class="back m muted" routerLink="/" fragment="progetti">← Projects</a>
+    <a class="back m muted" routerLink="/" fragment="progetti">← {{ t('Projects') }}</a>
     <h1 class="h detail-title">{{ project.title }}</h1>
 
     @if (project.work_experience) {
       <dl class="meta">
         <div>
-          <dt class="m muted">Context</dt>
+          <dt class="m muted">{{ t('Context') }}</dt>
           <dd>{{ project.work_experience.title }}</dd>
         </div>
         <div>
-          <dt class="m muted">Company</dt>
+          <dt class="m muted">{{ t('Company') }}</dt>
           <dd>{{ project.work_experience.company.name }}</dd>
         </div>
       </dl>
     } @else {
       <ul class="tags">
-        <li class="tag m">Personal Project</li>
+        <li class="tag m">{{ t('Personal Project') }}</li>
       </ul>
     }
 
     <div class="split">
-      <h2 class="h subtitle">What it does</h2>
+      <h2 class="h subtitle">{{ t('What it does') }}</h2>
       <p class="lead">{{ project.description }}</p>
     </div>
 
     <div class="split">
-      <h2 class="h subtitle">Stack</h2>
+      <h2 class="h subtitle">{{ t('Stack') }}</h2>
       <ul class="tags">
         @for (technology of project.technologies; track technology.uuid) {
           <li class="tag m">
@@ -40,9 +40,9 @@
       <div class="split">
         <h2 class="h subtitle">
           @if (repositories().length == 1) {
-            Repository
+            {{ t('Repository') }}
           } @else {
-            Repositories
+            {{ t('Repositories') }}
           }
         </h2>
         <ul class="a-hov">
@@ -57,12 +57,12 @@
 
     @if (project.is_portfolio) {
       <div>
-        <h2 class="h subtitle">Architecture</h2>
-        <app-diagram ariaLabel="labels.diagram" errorLabel="labels.diagramError" />
+        <h2 class="h subtitle">{{ t('Architecture') }}</h2>
+        <app-diagram [ariaLabel]="t('Architecture diagram')" [errorLabel]="t('Diagram unavailable')" />
       </div>
     }
 
-    <nav class="pager m" aria-label="Other projects">
+    <nav class="pager m" [attr.aria-label]="t('Other projects')">
       @if (pager().prev; as prev) {
         <a [routerLink]="['/progetti', prev.uuid]">← {{ prev.title }}</a>
       } @else {
@@ -75,8 +75,8 @@
   </article>
 } @else {
   @if (loaded() === true) {
-    <p class="back m">Project not found. <a routerLink="/">← Home</a></p>
+    <p class="back m">{{ t('Project not found.') }} <a routerLink="/">← {{ t('Home') }}</a></p>
   } @else {
-    <p class="back m">Loading...</p>
+    <p class="back m">{{ t('Loading...') }}</p>
   }
 }

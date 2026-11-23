@@ -5,6 +5,7 @@ import { DiagramService } from '../../../core/services/diagram.service';
 import { computeLayout } from '../../diagram-layout';
 import { DiagramCard } from './diagram-card';
 import { DiagramFrame } from './diagram-frame';
+import { I18nService } from '../../../i18n';
 
 @Component({
     selector: 'app-diagram',
@@ -15,6 +16,7 @@ import { DiagramFrame } from './diagram-frame';
 })
 export class Diagram implements OnInit {
     private readonly service = inject(DiagramService);
+    protected readonly t = inject(I18nService).t;
 
     readonly ariaLabel = input('Architecture diagram');
     readonly errorLabel = input('Diagram unavailable');

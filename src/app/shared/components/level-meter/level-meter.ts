@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   numberAttribute,
 } from '@angular/core';
+import { I18nService } from '../../../i18n';
 
 @Component({
   selector: 'app-level-meter',
@@ -13,6 +15,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LevelMeter {
+  protected readonly t = inject(I18nService).t;
   readonly level = input<number, unknown>(0, {
     transform: (value) => numberAttribute(value, 0),
   });

@@ -3,16 +3,17 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 
 import { Technology } from '../../../../core/models';
 import { EducationService, ExperieceService, LanguageService, PersonaService, TechnologyService } from '../../../../core/services';
+import { I18nService } from '../../../../i18n';
 import { Icon } from '../../../../shared/components/icon';
 import { LevelMeter } from '../../../../shared/components/level-meter';
 
 const TYPOLOGY_LABELS: Record<string, string> = {
-    language: 'Linguaggi',
+    language: 'Languages',
     framework: 'Framework',
-    library: 'Librerie',
+    library: 'Libraries',
     markup: 'Markup',
-    stylesheet: 'Stylesheet',
-    tool: 'Strumenti',
+    stylesheet: 'Stylesheets',
+    tool: 'Tools',
     database: 'Database',
 };
 
@@ -24,6 +25,8 @@ const TYPOLOGY_LABELS: Record<string, string> = {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Cv {
+    protected readonly t = inject(I18nService).t;
+
     private readonly personaService = inject(PersonaService);
     private readonly languageService = inject(LanguageService);
     private readonly educationService = inject(EducationService);
@@ -41,10 +44,16 @@ export class Cv {
         for (const technology of this.technologyService.technologies()) {
             groups.set(technology.typology_display, [...(groups.get(technology.typology_display) ?? []), technology]);
         }
-        return [...groups].map(([typology, items]) => ({
-            label: TYPOLOGY_LABELS[typology] ?? typology,
-            items,
-        }));
+        return [...groups].map(([typology, items]) => {
+            let label = TYPOLOGY_LABELS[typology]
+            if (!label) {
+                label = typology
+            }
+            else {
+                label = this.t(label)
+            }
+            return { label, items }
+        });
     });
 
     protected readonly softSkills = computed(() => [

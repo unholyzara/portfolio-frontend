@@ -8,19 +8,19 @@
       <p class="m cv__role">{{ personal().job_role }}</p>
     </section>
 
-    <section class="block" aria-labelledby="panoramica-title">
-      <h2 class="h block__title" id="panoramica-title">Overview</h2>
+    <section class="block" aria-labelledby="overview-title">
+      <h2 class="h block__title" id="panoramica-title">{{ t('Overview') }}</h2>
       <p class="block__text">{{ overview().text }}</p>
     </section>
 
-    <section class="block" aria-labelledby="formazione-title">
-      <h2 class="h block__title" id="formazione-title">Academic education</h2>
+    <section class="block" aria-labelledby="education-title">
+      <h2 class="h block__title" id="formazione-title">{{ t('Academic education') }}</h2>
       <ol class="timeline">
         @for (education of timelineEducations(); track education.uuid) {
           <li class="entry timeline__item">
             <p class="m muted">
               {{ education.start_date | date: 'yyyy' }} –
-              {{ education.end_date ? (education.end_date | date: 'yyyy') : 'Ongoing' }}
+              {{ education.end_date ? (education.end_date | date: 'yyyy') : t('Ongoing') }}
             </p>
             <h3 class="entry__title">{{ education.qualification }}</h3>
             <p class="entry__sub">{{ education.field_of_study }}</p>
@@ -31,17 +31,21 @@
     </section>
 
     <section class="block work-experieces" aria-labelledby="work-title">
-      <h2 class="h block__title" id="work-title">Work experience</h2>
+      <h2 class="h block__title" id="work-title">{{ t('Work experience') }}</h2>
       @for (experience of experiences(); track experience.uuid) {
         <div class="entry">
           <h3 class="entry__title">{{ experience.company.name }} | {{ experience.title }}</h3>
-          <p class="m muted">{{ experience.start_date }} – {{ experience.end_date ?? 'Present' }}</p>
+          <p class="m muted">
+            {{ experience.start_date }} – {{ experience.end_date ?? t('Present') }}
+          </p>
           @if (experience.description) {
             <p class="entry__description">{{ experience.description }}</p>
           }
           @let responsibilities = experienceResponsibilities(experience.uuid);
           @if (responsibilities.length) {
-            <p class="m muted entry__label" [id]="'responsibilities-' + experience.uuid">Responsibilities</p>
+            <p class="m muted entry__label" [id]="'responsibilities-' + experience.uuid">
+              {{ t('Responsibilities') }}
+            </p>
             <ul class="bullets" [attr.aria-labelledby]="'responsibilities-' + experience.uuid">
               @for (responsibility of responsibilities; track responsibility.uuid) {
                 <li>{{ responsibility.description }}</li>
@@ -53,7 +57,7 @@
     </section>
   </div>
 
-  <aside class="cv__side" aria-label="Contacts and skills">
+  <aside class="cv__side" [aria-label]="t('Contacts and skills')">
     <ul class="plain block">
       <li class="cv__contact">
         <app-icon name="mail" [size]="20" class="cv__icon" />
@@ -68,7 +72,7 @@
     </ul>
 
     <section class="block" aria-labelledby="tech-title">
-      <h2 class="h block__title" id="tech-title">Technical skills</h2>
+      <h2 class="h block__title" id="tech-title">{{ t('Technical skills') }}</h2>
       @for (group of technologyGroups(); track group.label) {
         <div class="group">
           <h3 class="m muted group__title">{{ group.label }}</h3>
@@ -85,7 +89,7 @@
     </section>
 
     <section class="block" aria-labelledby="soft-title">
-      <h2 class="h block__title" id="soft-title">Soft skills</h2>
+      <h2 class="h block__title" id="soft-title">{{ t('Soft skills') }}</h2>
       <ul class="bullets">
         @for (skill of softSkills(); track skill) {
           <li>{{ skill }}</li>
@@ -94,7 +98,7 @@
     </section>
 
     <section class="block" aria-labelledby="lingue-title">
-      <h2 class="h block__title" id="lingue-title">Languages</h2>
+      <h2 class="h block__title" id="lingue-title">{{ t('Languages') }}</h2>
       <ul class="plain">
         @for (language of languages(); track language.uuid) {
           <li class="skill">

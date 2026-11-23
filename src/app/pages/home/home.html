@@ -6,7 +6,7 @@
   <div class="hero__meta">
     <p class="m muted">{{ personal().job_role }} · {{ personal().location }}</p>
     <div class="cta__actions">
-      <a class="btn btn--accent m" [routerLink]="['/cv']">CV →</a>
+      <a class="btn btn--accent m" [routerLink]="['/cv']">{{ t('CV') }} →</a>
       <a class="m hov" [href]="'mailto:' + personal().email">{{ personal().email }}</a>
       <a class="m hov" href="https://github.com/unholyzara" target="_blank" rel="noopener">
         GitHub
@@ -25,15 +25,15 @@
 
 <div class="duo">
   <section class="section" id="esperienza" aria-labelledby="esperienza-title">
-    <p class="m muted"><span class="section-number">01</span> / Section</p>
-    <h2 class="h section__title" id="esperienza-title">Experience</h2>
-    <app-carousel label="Experience">
+    <p class="m muted"><span class="section-number">01</span> / {{ t('Section') }}</p>
+    <h2 class="h section__title" id="esperienza-title">{{ t('Experience') }}</h2>
+    <app-carousel [label]="t('Experience')">
       @for (experience of experiences(); track experience.uuid) {
         <li class="card">
           <a class="card__link" [routerLink]="['/esperienza', experience.uuid]">
             <span class="card__head">
               <span class="m muted"
-                >{{ experience.start_date }} – {{ experience.end_date ?? 'ongoing' }}</span
+                >{{ experience.start_date }} – {{ experience.end_date ?? t('Ongoing') }}</span
               >
               <span class="h card__title">{{ experience.title }}</span>
               <span class="card__sub">{{ experience.company.name }}</span>
@@ -49,9 +49,9 @@
   </section>
 
   <section class="section" id="progetti" aria-labelledby="progetti-title">
-    <p class="m muted"><span class="section-number">02</span> / Section</p>
-    <h2 class="h section__title" id="progetti-title">Projects</h2>
-    <app-carousel label="Projects">
+    <p class="m muted"><span class="section-number">02</span> / {{ t('Section') }}</p>
+    <h2 class="h section__title" id="progetti-title">{{ t('Projects') }}</h2>
+    <app-carousel [label]="t('Projects')">
       @for (project of projects(); track project.uuid; let i = $index) {
         <li class="card">
           <a class="card__link" [routerLink]="['/progetti', project.uuid]">
@@ -72,12 +72,12 @@
 
 <div class="duo">
   <section class="section" id="formazione" aria-labelledby="formazione-title">
-    <p class="m muted"><span class="section-number">03</span> / Section</p>
-    <h2 class="h section__title" id="formazione-title">Education</h2>
+    <p class="m muted"><span class="section-number">03</span> / {{ t('Section') }}</p>
+    <h2 class="h section__title" id="formazione-title">{{ t('Education') }}</h2>
     <ul class="list">
       @for (education of educations(); track education.uuid) {
         <li class="row row--date">
-          <span class="m">{{ education.start_date }} – {{ education.end_date ?? 'ongoing' }}</span>
+          <span class="m">{{ education.start_date }} – {{ education.end_date ?? t('Ongoing') }}</span>
           <span>
             {{ education.qualification }} · {{ education.field_of_study }}
             <span class="row__sub muted">{{ education.institution }}</span>
@@ -88,8 +88,8 @@
   </section>
 
   <section class="section" aria-labelledby="skills-title">
-    <p class="m muted"><span class="section-number">04</span> / Section</p>
-    <h2 class="h section__title" id="skills-title">Technologies used</h2>
+    <p class="m muted"><span class="section-number">04</span> / {{ t('Section') }}</p>
+    <h2 class="h section__title" id="skills-title">{{ t('Technologies used') }}</h2>
     <ul class="tags">
       @for (technology of technologies(); track technology.uuid) {
         <li class="tag m">

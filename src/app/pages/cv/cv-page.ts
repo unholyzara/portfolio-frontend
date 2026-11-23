@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { I18nService } from '../../i18n';
 import { Cv } from './subparts/cv/cv';
 
 @Component({
@@ -12,6 +13,8 @@ import { Cv } from './subparts/cv/cv';
 })
 export class CvPage {
     private readonly document = inject(DOCUMENT);
+
+    protected readonly t = inject(I18nService).t;
 
     protected async print(): Promise<void> {
         const cv = this.document.querySelector('app-cv');

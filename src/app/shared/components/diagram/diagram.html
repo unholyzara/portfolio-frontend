@@ -1,12 +1,12 @@
 <figure class="diagram">
   @if (chart(); as flow) {
-    <div class="diagram__scroll" role="img" [attr.aria-label]="ariaLabel()">
+    <div class="diagram__scroll" role="img" [attr.aria-label]="t(ariaLabel())">
       <div class="diagram__stage" [style.aspect-ratio]="flow.ratio">
         <vflow view="auto" [nodes]="flow.nodes" [edges]="flow.edges" />
       </div>
     </div>
   } @else if (failed()) {
-    <p class="diagram__error" role="alert">{{ errorLabel() }}</p>
+    <p class="diagram__error" role="alert">{{ t(errorLabel()) }}</p>
   } @else {
     <div class="diagram__skeleton" aria-busy="true"></div>
   }

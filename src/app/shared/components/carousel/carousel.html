@@ -1,10 +1,10 @@
-<div class="carousel" role="group" aria-roledescription="carousel" [attr.aria-label]="label()">
+<div class="carousel" role="group" [attr.aria-roledescription]="t('Carousel')" [attr.aria-label]="label()">
   @if (canPrev() || canNext()) {
     <div class="carousel__controls">
       <button
         type="button"
         class="carousel__btn m"
-        aria-label="Previous"
+        [attr.aria-label]="t('Previous')"
         [disabled]="!canPrev()"
         (click)="scroll(-1)"
       >
@@ -13,7 +13,7 @@
       <button
         type="button"
         class="carousel__btn m"
-        aria-label="Next"
+        [attr.aria-label]="t('Next')"
         [disabled]="!canNext()"
         (click)="scroll(1)"
       >

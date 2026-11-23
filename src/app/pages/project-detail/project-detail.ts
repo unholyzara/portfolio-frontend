@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { RouterLink } from '@angular/router';
 
 import { ProjectService } from '../../core/services';
+import { I18nService } from '../../i18n';
 import { Diagram } from '../../shared/components/diagram';
 import { pagerOf } from '../../shared/utils';
 
@@ -13,6 +14,7 @@ import { pagerOf } from '../../shared/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectDetail {
+  protected readonly t = inject(I18nService).t;
   private readonly projectService = inject(ProjectService);
 
   readonly uuid = input.required<string>();

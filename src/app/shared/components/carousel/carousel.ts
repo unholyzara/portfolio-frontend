@@ -9,6 +9,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { I18nService } from '../../../i18n';
 
 @Component({
   selector: 'app-carousel',
@@ -17,6 +18,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Carousel {
+  protected readonly t = inject(I18nService).t;
   readonly label = input.required<string>();
 
   private readonly destroyRef = inject(DestroyRef);

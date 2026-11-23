@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 
 import { EducationService, ExperieceService, LanguageService, PersonaService, ProjectService, TechnologyService } from '../../core/services';
+import { I18nService } from '../../i18n';
 
 import { Carousel } from '../../shared/components/carousel';
 import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
@@ -14,6 +15,7 @@ import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
+  protected readonly t = inject(I18nService).t;
   private readonly personaService = inject(PersonaService);
   private readonly languageService = inject(LanguageService);
   private readonly experienceService = inject(ExperieceService);

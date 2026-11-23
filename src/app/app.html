@@ -3,21 +3,21 @@
 } @else {
   <header class="nav m">
     <a class="nav__brand" routerLink="/">unholyzara.dev</a>
-    <nav class="nav__links" aria-label="Main">
-      <a href="/" (click)="scrollToSection('progetti', $event)">Projects</a>
-      <a href="/" (click)="scrollToSection('esperienza', $event)">Experience</a>
-      <a href="/" (click)="scrollToSection('formazione', $event)">Education</a>
-      <a href="/" (click)="scrollToSection('contatti', $event)">Contacts</a>
-      <button type="button" class="btn m" aria-label="Change theme" (click)="settings.toggleTheme()">
-        <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
+    <nav class="nav__links" [attr.aria-label]="t('Main')">
+      <a href="/" (click)="scrollToSection('progetti', $event)">{{ t('Projects') }}</a>
+      <a href="/" (click)="scrollToSection('esperienza', $event)">{{ t('Experience') }}</a>
+      <a href="/" (click)="scrollToSection('formazione', $event)">{{ t('Education') }}</a>
+      <a href="/" (click)="scrollToSection('contatti', $event)">{{ t('Contacts') }}</a>
+      <button type="button" class="btn m" [attr.aria-label]="t('Change theme')" (click)="settings.toggleTheme()">
+        <span [class.on]="settings.theme() === 'dark'">{{ t('Dark') }}</span>&nbsp;/&nbsp;<span
           [class.on]="settings.theme() === 'light'"
-          >Light</span
+          >{{ t('Light') }}</span
         >
       </button>
       <button
         type="button"
         class="btn m"
-        aria-label="Change language"
+        [attr.aria-label]="t('Change language')"
         (click)="settings.toggleLang()"
       >
         @for (lang of settings.languages; track lang) {
@@ -29,7 +29,7 @@
         }
       </button>
       @if (settings.status().maintenanceStatus) {
-        <span class="tag tag--accent m">Maintenance</span>
+        <span class="tag tag--accent m">{{ t('Maintenance') }}</span>
       }
     </nav>
   </header>

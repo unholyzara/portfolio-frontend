@@ -2,16 +2,16 @@
   <header class="maintenance__bar m">
     <span class="maintenance__brand">unholyzara.dev</span>
     <div class="maintenance__actions">
-      <button type="button" class="btn m" aria-label="Change theme" (click)="settings.toggleTheme()">
-        <span [class.on]="settings.theme() === 'dark'">Dark</span>&nbsp;/&nbsp;<span
+      <button type="button" class="btn m" [attr.aria-label]="t('Change theme')" (click)="settings.toggleTheme()">
+        <span [class.on]="settings.theme() === 'dark'">{{ t('Dark') }}</span>&nbsp;/&nbsp;<span
           [class.on]="settings.theme() === 'light'"
-          >Light</span
+          >{{ t('Light') }}</span
         >
       </button>
       <button
         type="button"
         class="btn m"
-        aria-label="Change language"
+        [attr.aria-label]="t('Change language')"
         (click)="settings.toggleLang()"
       >
         <span [class.on]="settings.lang() === 'it'">IT</span>&nbsp;/&nbsp;<span
@@ -23,9 +23,9 @@
   </header>
 
   <main class="maintenance__body">
-    <span class="tag tag--accent m">Ongoing</span>
-    <h1 class="h maintenance__title">Under Maintenance</h1>
+    <span class="tag tag--accent m">{{ t('Ongoing') }}</span>
+    <h1 class="h maintenance__title">{{ t('Under Maintenance') }}</h1>
     <div class="maintenance__stripes" aria-hidden="true"></div>
-    <button type="button" class="btn btn--accent m" (click)="retry()">Retry →</button>
+    <button type="button" class="btn btn--accent m" (click)="retry()">{{ t('Retry') }} →</button>
   </main>
 </div>

@@ -1,15 +1,15 @@
 @if (experience(); as experience) {
   <article>
-    <a class="back m muted hov" routerLink="/" fragment="esperienza">← Experience</a>
+    <a class="back m muted hov" routerLink="/" fragment="esperienza">← {{ t('Experience') }}</a>
     <h1 class="h detail-title">{{ experience.title }}</h1>
 
     <div class="split split--top">
       <dl class="aside">
-        <dt class="m muted">Company</dt>
+        <dt class="m muted">{{ t('Company') }}</dt>
         <dd class="aside__lead">{{ experience.company.name }}</dd>
-        <dt class="m muted">Period</dt>
-        <dd>{{ experience.start_date }} – {{ experience.end_date ?? 'ongoing' }}</dd>
-        <dt class="m muted">Website</dt>
+        <dt class="m muted">{{ t('Period') }}</dt>
+        <dd>{{ experience.start_date }} – {{ experience.end_date ?? t('Ongoing') }}</dd>
+        <dt class="m muted">{{ t('Website') }}</dt>
         <dd>
           @if (experience.company.website; as website) {
             <a class="hov" [href]="website" target="_blank" rel="noopener">{{ website }}</a>
@@ -17,7 +17,7 @@
         </dd>
         <hr class="separator" />
         @if (experience.technologies.length > 0) {
-          <dt class="m muted">Technologies used</dt>
+          <dt class="m muted">{{ t('Technologies used') }}</dt>
           <dd>
             <ul class="tags">
               @for (tech of experience.technologies; track tech.uuid) {
@@ -30,7 +30,7 @@
           </dd>
         }
         @if (experience.technical_skills.length > 0) {
-          <dt class="m muted">Technical skills</dt>
+          <dt class="m muted">{{ t('Technical skills') }}</dt>
           <dd>
             <ul class="tags">
               @for (skill of experience.technical_skills; track skill.uuid) {
@@ -41,7 +41,7 @@
         }
 
         @if (experience.soft_skills.length > 0) {
-          <dt class="m muted">Soft skills</dt>
+          <dt class="m muted">{{ t('Soft skills') }}</dt>
           <dd>
             <ul class="tags">
               @for (skill of experience.soft_skills; track skill.uuid) {
@@ -56,7 +56,7 @@
         <p class="lead">{{ experience.description }}</p>
 
         @if (responsibilities().length > 0) {
-          <h2 class="h subtitle">Responsibilities</h2>
+          <h2 class="h subtitle">{{ t('Responsibilities') }}</h2>
           <ul class="list">
             @for (responsibility of responsibilities(); track responsibility.uuid; let i = $index) {
               <li class="row row--index">
@@ -68,8 +68,8 @@
         }
 
         @if (projects().length > 0) {
-          <h2 class="h subtitle">Projects</h2>
-          <app-carousel label="Projects">
+          <h2 class="h subtitle">{{ t('Projects') }}</h2>
+          <app-carousel [label]="t('Projects')">
             @for (project of projects(); track project.uuid; let i = $index) {
               <li class="card">
                 <a class="card__link" [routerLink]="['/progetti', project.uuid]">
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <nav class="pager m a-hov" aria-label="Other experiences">
+    <nav class="pager m a-hov" [attr.aria-label]="t('Other experiences')">
       @if (pager().prev; as prev) {
         <a [routerLink]="['/esperienza', prev.uuid]">← {{ prev.title }}</a>
       } @else {
@@ -102,8 +102,8 @@
   </article>
 } @else {
   @if (loaded() === true) {
-    <p class="back m">Experience not found. <a routerLink="/">← Home</a></p>
+    <p class="back m">{{ t('Experience not found.') }} <a routerLink="/">← {{ t('Home') }}</a></p>
   } @else {
-    <p class="back m">Loading...</p>
+    <p class="back m">{{ t('Loading...') }}</p>
   }
 }

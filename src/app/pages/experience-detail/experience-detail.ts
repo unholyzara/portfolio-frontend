@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { RouterLink } from '@angular/router';
 
 import { ExperieceService, ProjectService } from '../../core/services';
+import { I18nService } from '../../i18n';
 
 import { Carousel } from '../../shared/components/carousel';
 import { JoinNamesPipe, OrdinalPipe } from '../../shared/pipes';
@@ -15,6 +16,7 @@ import { pagerOf } from '../../shared/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExperienceDetail {
+  protected readonly t = inject(I18nService).t;
   private readonly experienceService = inject(ExperieceService);
   private readonly projectService = inject(ProjectService);
 
